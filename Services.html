@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your external CSS file -->
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        /* Navbar styling */
+        .navbar {
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .navbar .menu {
+            display: flex;
+            gap: 15px;
+        }
+
+        .navbar .menu a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        .navbar .menu a:hover {
+            color: #ff5733;
+        }
+
+        .navbar .social-icons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .navbar .social-icons a {
+            color: white;
+            font-size: 22px;
+            transition: color 0.3s ease;
+        }
+
+        .navbar .social-icons a:hover {
+            color: #ff5733;
+        }
+
+        /* Container styling */
+        .container {
+            max-width: 1200px;
+            margin: 100px auto 0; /* Adjusted margin to accommodate navbar */
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+        }
+
+        .services-section {
+            padding: 50px 20px;
+            text-align: center;
+            background-color: #f1f1f1;
+        }
+
+        .services-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .services-section p {
+            font-size: 1.2em;
+            margin-bottom: 40px;
+        }
+
+        .services {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .service {
+            width: 300px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .service img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .service h3 {
+            margin-top: 10px;
+            font-size: 1.5em;
+        }
+
+        .service p {
+            font-size: 1em;
+        }
+
+        .service .learn-more-btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #ff5733;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .service .learn-more-btn:hover {
+            background-color: #ff7733;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <div class="logo">My Company</div>
+        <div class="menu">
+            <a href="index.html">Home</a>
+            <a href="services.html">Services</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <div class="social-icons">
+            <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://telegram.org" target="_blank"><i class="fab fa-telegram-plane"></i></a>
+            <a href="mailto:someone@example.com"><i class="fas fa-envelope"></i></a>
+        </div>
+    </div>
+
+    <!-- Content -->
+    <header>
+        <h1>Our Services</h1>
+    </header>
+
+    <section class="services-section">
+        <div class="container">
+            <h2>What We Offer</h2>
+            <p>We provide a wide range of high-quality services designed to help your business thrive.</p>
+
+            <div class="services">
+                <div class="service">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTUqLL4cnXtHdjInigeujO0QjBfHovANQE6A&s" alt="Service 1">
+                    <h3>Web Development</h3>
+                    <p>We build modern, responsive, and high-performance websites tailored to your needs.</p>
+                    <a href="#" class="learn-more-btn">Learn More</a>
+                </div>
+
+                <div class="service">
+                    <img src="https://www.wordstream.com/wp-content/uploads/2022/08/what-does-seo-stand-for.png" alt="Service 2">
+                    <h3>SEO Optimization</h3>
+                    <p>Our SEO services will help your website rank higher in search engines and attract more traffic.</p>
+                    <a href="#" class="learn-more-btn">Learn More</a>
+                </div>
+
+                <div class="service">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_odjD6fXzBlGggDzOkdUDRfZTiaeKdEtdNQ&s" alt="Service 3">
+                    <h3>Graphic Design</h3>
+                    <p>We provide creative and professional graphic design solutions for your business.</p>
+                    <a href="#" class="learn-more-btn">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Our Company. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

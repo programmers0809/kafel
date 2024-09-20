@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charming Product Display</title>
+    <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyLdixc00_o4zatGZ9ikv9YJdziUr3BryxLQ&s">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://i.ytimg.com/vi/rs3WbN71a4A/maxresdefault.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            color: #fff;
+        }
+
+        /* Navbar styling */
+        .navbar {
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            z-index: 100;
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .navbar .menu {
+            display: flex;
+            gap: 15px;
+        }
+
+        .navbar .menu a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        .navbar .menu a:hover {
+            color: #ff5733;
+        }
+
+        .navbar .social-icons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .navbar .social-icons a {
+            color: white;
+            font-size: 22px;
+            transition: color 0.3s ease;
+        }
+
+        .navbar .social-icons a:hover {
+            color: #ff5733;
+        }
+
+        .content {
+            margin-top: 100px;
+            text-align: center;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .text {
+            color: #fff;
+            font-size: 40px;
+            text-align: center;
+            animation: slideDown 2s forwards;
+            opacity: 0;
+            margin-bottom: 40px;
+        }
+
+        @keyframes slideDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .carousel {
+            display: flex;
+            overflow: hidden;
+            width: 90%;
+            max-width: 1200px;
+            position: relative;
+        }
+
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .product {
+            min-width: 250px;
+            margin: 0 10px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transform: translateY(100px);
+            animation: slideUp 2s 2s forwards;
+        }
+
+        @keyframes slideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(100px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .product img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .product h3 {
+            margin: 10px 0;
+            font-size: 20px;
+            color: #333;
+        }
+
+        .product p {
+            font-size: 16px;
+            color: #777;
+            padding-bottom: 10px;
+        }
+
+        .buy-btn {
+            display: inline-block;
+            padding: 8px 16px;
+            margin: 10px 0;
+            background-color: #ff5733;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .buy-btn:hover {
+            background-color: #ff7733;
+        }
+
+        /* Chigram text styling */
+        .chigram-text {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(117, 10, 10, 0.7);
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 3px;
+            transform: translateY(-100%);
+            animation: chigramAnimation 1s forwards;
+        }
+
+        @keyframes chigramAnimation {
+            0% {
+                opacity: 0;
+                transform: translateY(-100%);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(10px);
+            }
+        }
+
+        /* Left and Right controls */
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.5);
+            border: none;
+            font-size: 24px;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        .prev {
+            left: -30px;
+        }
+
+        .next {
+            right: -30px;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">Store</div>
+        <div class="menu">
+            <a href="#">Home</a>
+            <a href="#">Products</a>
+            <a href="abaut.html">About Us</a>
+            <a href="#">Contact</a>
+        </div>
+        <div class="social-icons">
+            <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://telegram.org" target="_blank"><i class="fab fa-telegram-plane"></i></a>
+            <a href="mailto:someone@example.com"><i class="fas fa-envelope"></i></a>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="text">Welcome to Our Store!</div>
+
+        <div class="carousel">
+            <button class="prev" onclick="prevSlide()">&#10094;</button>
+            <div class="carousel-inner">
+                <div class="product">
+                    <div class="chigram-text">50%</div>
+                    <img src="https://i.ytimg.com/vi/HE0LPpxlbvI/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDVVFf5LmM6v-cKmASAXN5uOlrKjQ" alt="Product 1">
+                    <h3>pilita</h3>
+                    <p>$50</p>
+                    <a href="#" class="buy-btn">Buy Now</a>
+                </div>
+                <div class="product">
+                    <div class="chigram-text">20%</div>
+                    <img src="https://i.ytimg.com/vi/wxiw-rnX5Eo/sddefault.jpg" alt="Product 2">
+                    <h3>sokil</h3>
+                    <p>$60</p>
+                    <a href="#" class="buy-btn">Buy Now</a>
+                </div>
+                <div class="product">
+                    <div class="chigram-text">60%</div>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRaRxshqNSL6JUFzcG-WSB4fuJ7GYs1JRb_A&s" alt="Product 3">
+                    <h3>kafel</h3>
+                    <p>$70</p>
+                    <a href="#" class="buy-btn">Buy Now</a>
+                </div>
+                <div class="product">
+                    <div class="chigram-text">30%</div>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjvoOnX5WZTM37BQdxV5295xSPmsCQniNNr7xmpOlBTMQ0de52qITWi-cDl1HXeO44bhU&usqp=CAU" alt="Product 4">
+                    <h3>pilita</h3>
+                    <p>$80</p>
+                    <a href="#" class="buy-btn">Buy Now</a>
+                </div>
+                <!-- 16 more products -->
+                <div class="product">
+                    <div class="chigram-text">40%</div>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSILZR7o0DgwISOsFsn2bVIcUC1atlKUW48tQ&s" alt="Product 5">
+                    <h3>Product 5</h3>
+                    <p>$100</p>
+                    <a href="#" class="buy-btn">Buy Now</a>
+                </div>
+                <div class="product">
+                    <div class="chigram-text">10%</div>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfU-Nb36vniFsjC5p0APzklKayJBEUVi1e2A&s" alt="Product 6">
+                    <h3>Product 6</h3>
+                    <p>$110</p>
+                    <a href="#" class="buy-btn">Buy Now</a>
+                </div>
+                <!-- Repeat similar blocks for products 7 to 20 -->
+            </div>
+            
+    </div>
+
+    <script>
+        let currentIndex = 0;
+        let autoSlideInterval;
+
+        function showSlide(index) {
+            const carouselInner = document.querySelector('.carousel-inner');
+            const slides = document.querySelectorAll('.product');
+            const totalSlides = slides.length;
+
+            if (index >= totalSlides) currentIndex = 0;
+            if (index < 0) currentIndex = totalSlides - 1;
+
+            carouselInner.style.transform = `translateX(-${currentIndex * (250 + 20)}px)`;
+        }
+
+        function nextSlide() {
+            currentIndex++;
+            showSlide(currentIndex);
+        }
+
+        function prevSlide() {
+            currentIndex--;
+            showSlide(currentIndex);
+        }
+
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(nextSlide, 3000);
+        }
+
+        function stopAutoSlide() {
+            clearInterval(autoSlideInterval);
+        }
+
+        window.onload = function() {
+            startAutoSlide();
+
+            const carousel = document.querySelector('.carousel');
+            carousel.addEventListener('mouseover', stopAutoSlide);
+            carousel.addEventListener('mouseout', startAutoSlide);
+        };
+    </script>
+</body>
+</html>

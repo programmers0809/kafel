@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yursin Mashina</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #e0e0e0;
+        }
+
+        .scene {
+            perspective: 1200px;
+        }
+
+        .car {
+            position: relative;
+            width: 220px;
+            height: 120px;
+            transform-style: preserve-3d;
+            transform: rotateX(20deg) rotateY(0deg);
+            transition: transform 0.5s;
+        }
+
+        .car:hover {
+            transform: rotateX(20deg) rotateY(360deg);
+        }
+
+        .body, .roof, .window, .wheel, .headlight {
+            position: absolute;
+            border-radius: 5px;
+        }
+
+        .body {
+            width: 100%;
+            height: 60px;
+            background: #3b3b3b;
+            top: 60px;
+        }
+
+        .roof {
+            width: 70%;
+            height: 30px;
+            background: #585858;
+            top: 20px;
+            left: 15%;
+        }
+
+        .window {
+            width: 50%;
+            height: 20px;
+            background: #8b8b8b;
+            top: 5px;
+            left: 25%;
+        }
+
+        .wheel {
+            width: 35px;
+            height: 35px;
+            background: #000;
+            border-radius: 50%;
+            bottom: -17px;
+        }
+
+        .wheel1 {
+            left: 25px;
+        }
+
+        .wheel2 {
+            right: 25px;
+        }
+
+        .headlight {
+            width: 20px;
+            height: 20px;
+            background: #ffeb3b;
+            border-radius: 50%;
+            top: 10px;
+        }
+
+        .headlight1 {
+            left: 15px;
+        }
+
+        .headlight2 {
+            right: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="scene">
+        <div class="car">
+            <div class="body"></div>
+            <div class="roof"></div>
+            <div class="window"></div>
+            <div class="wheel wheel1"></div>
+            <div class="wheel wheel2"></div>
+            <div class="headlight headlight1"></div>
+            <div class="headlight headlight2"></div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const car = document.querySelector('.car');
+            let isDragging = false;
+            let startX, startY, initialRotationY;
+
+            car.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                startX = e.clientX;
+                const style = window.getComputedStyle(car);
+                const transform = style.getPropertyValue('transform');
+                const matrix = new DOMMatrix(transform);
+                initialRotationY = Math.atan2(matrix.m32, matrix.m31) * (180 / Math.PI);
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (isDragging) {
+                    const dx = e.clientX - startX;
+                    const rotationY = initialRotationY + dx * 0.5;
+                    car.style.transform = `rotateX(20deg) rotateY(${rotationY}deg)`;
+                }
+            });
+
+            document.addEventListener('mouseup', () => {
+                isDragging = false;
+            });
+
+            // Touch support
+            car.addEventListener('touchstart', (e) => {
+                isDragging = true;
+                startX = e.touches[0].clientX;
+                const style = window.getComputedStyle(car);
+                const transform = style.getPropertyValue('transform');
+                const matrix = new DOMMatrix(transform);
+                initialRotationY = Math.atan2(matrix.m32, matrix.m31) * (180 / Math.PI);
+            });
+
+            document.addEventListener('touchmove', (e) => {
+                if (isDragging) {
+                    const dx = e.touches[0].clientX - startX;
+                    const rotationY = initialRotationY + dx * 0.5;
+                    car.style.transform = `rotateX(20deg) rotateY(${rotationY}deg)`;
+                    startX = e.touches[0].clientX;
+                }
+            });
+
+            document.addEventListener('touchend', () => {
+                isDragging = false;
+            });
+        });
+    </script>
+</body>
+</html>
